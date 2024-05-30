@@ -3,6 +3,11 @@ import React from "react";
 
 const MapPage: React.FC = () => {
   const router = useRouter();
+
+  if (!router.query.address) {
+    return <div>Loading...</div>;
+  }
+
   const address = JSON.parse(router.query.address as string);
 
   return (

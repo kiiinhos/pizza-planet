@@ -33,7 +33,6 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
     "37.7749,-122.4194",
     "34.0522,-118.2437",
     "40.7128,-74.0060",
-    // Adicione mais coordenadas conforme necessário
   ];
 
   useEffect(() => {
