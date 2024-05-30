@@ -67,6 +67,8 @@ const HomePage: React.FC = () => {
     setIsDeleteModalOpen(false);
   };
 
+  const isAnyModalOpen = isModalOpen || isEditModalOpen || isDeleteModalOpen;
+
   return (
     <div className="container mx-auto p-4">
       <Header />
@@ -102,7 +104,7 @@ const HomePage: React.FC = () => {
         onClose={handleCloseDeleteModal}
         onConfirm={handleConfirmDelete}
       />
-      <NavigationMenu />
+      {!isAnyModalOpen && <NavigationMenu />}
     </div>
   );
 };
