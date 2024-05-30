@@ -86,12 +86,12 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
           </button>
           <button
             className={`flex items-center px-2 py-1 border rounded-lg ${
-              formData.type === "Friend's house" ? "bg-blue-100" : ""
+              formData.type === "Friend&apos;s house" ? "bg-blue-100" : ""
             }`}
-            onClick={() => handleIconClick("Friend's house")}
+            onClick={() => handleIconClick("Friend&apos;s house")}
           >
             <IconFriendHouse className="w-6 h-6 mr-2" />
-            Friend's house
+            Friend&apos;s house
           </button>
         </div>
         <div className="mb-4">

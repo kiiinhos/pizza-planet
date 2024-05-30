@@ -33,6 +33,7 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
     "37.7749,-122.4194",
     "34.0522,-118.2437",
     "40.7128,-74.0060",
+    // Adicione mais coordenadas conforme necessário
   ];
 
   useEffect(() => {
@@ -46,7 +47,11 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: name === "lot" ? Number(value) : value,
+    }));
   };
 
   const handleSave = () => {
@@ -101,12 +106,12 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
           </button>
           <button
             className={`flex items-center px-2 py-1 border rounded-lg ${
-              address.type === "Friend's house" ? "bg-blue-100" : ""
+              address.type === "Friend&apos;s house" ? "bg-blue-100" : ""
             }`}
-            onClick={() => handleIconClick("Friend's house")}
+            onClick={() => handleIconClick("Friend&apos;s house")}
           >
             <IconFriendHouse className="w-6 h-6 mr-2" />
-            Friend's house
+            Friend&apos;s house
           </button>
         </div>
         <div className="mb-4">
@@ -117,23 +122,6 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             placeholder="Receiver's name"
             className="w-full px-4 py-2 border rounded-lg"
           />
-        </div>
-        <div className="mb-4">
-          <select
-            name="coordinates"
-            value={address.coordinates}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-lg"
-          >
-            <option value="" disabled>
-              Select Coordinates
-            </option>
-            {coordinatesOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
         </div>
         <div className="mb-4">
           <input
@@ -153,7 +141,6 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
-
         <div className="mb-4">
           <input
             name="lot"
@@ -171,6 +158,24 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             placeholder="Phone"
             className="w-full px-4 py-2 border rounded-lg"
           />
+        </div>
+        <div className="mb-4 relative">
+          <select
+            name="coordinates"
+            value={address.coordinates}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg appearance-none"
+            style={{ display: "block", position: "absolute", bottom: 0 }}
+          >
+            <option value="" disabled>
+              Select Coordinates
+            </option>
+            {coordinatesOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="flex justify-center">
           <button
