@@ -8,6 +8,7 @@ import ConfirmAddressModal from "../components/modal/ConfirmAddressModal";
 import EditAddressModal from "../components/modal/EditAddressModal";
 import ConfirmDeleteModal from "../components/modal/ConfirmDeleteModal";
 import NavigationMenu from "../components/NavigationMenu";
+import AddressFormModal from "../components/modal/AddressFormModal";
 
 const HomePage: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
@@ -15,6 +16,7 @@ const HomePage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
 
   useEffect(() => {
     fetchAddresses();
@@ -46,7 +48,7 @@ const HomePage: React.FC = () => {
 
   const handleSaveAddress = async (updatedAddress: Address) => {
     await api.patch(`/address/${updatedAddress.id}`, updatedAddress);
-    await fetchAddresses(); // Garante que o fetchAddresses seja concluído antes de fechar o modal
+    await fetchAddresses();
     setIsEditModalOpen(false);
   };
 
@@ -58,7 +60,7 @@ const HomePage: React.FC = () => {
   const handleConfirmDelete = async () => {
     if (selectedAddress) {
       await api.delete(`/address/${selectedAddress.id}`);
-      await fetchAddresses(); // Garante que o fetchAddresses seja concluído antes de fechar o modal
+      await fetchAddresses();
       setIsDeleteModalOpen(false);
     }
   };
@@ -104,8 +106,19 @@ const HomePage: React.FC = () => {
           onConfirm={handleConfirmDelete}
         />
       )}
+      <AddressFormModal
+        isOpen={isFormModalOpen}
+        onClose={() => setIsFormModalOpen(false)}
+        onSave={handleSaveAddress}
+        onOpenChange={(isOpen) => setIsFormModalOpen(isOpen)}
+      />
       <NavigationMenu
-        isVisible={!isModalOpen && !isEditModalOpen && !isDeleteModalOpen}
+        isVisible={
+          !isModalOpen &&
+          !isEditModalOpen &&
+          !isDeleteModalOpen &&
+          !isFormModalOpen
+        }
       />
     </div>
   );
