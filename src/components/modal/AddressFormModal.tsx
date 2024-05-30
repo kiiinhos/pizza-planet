@@ -10,7 +10,7 @@ interface AddressFormModalProps {
   onClose: () => void;
   onSave: (address: Address) => void;
   initialData?: Address | null;
-  onOpenChange?: (isOpen: boolean) => void; // Tornar opcional
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
 const AddressFormModal: React.FC<AddressFormModalProps> = ({
@@ -18,7 +18,7 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
   onClose,
   onSave,
   initialData,
-  onOpenChange = () => {}, // Adicionar valor padrão
+  onOpenChange = () => {},
 }) => {
   const [address, setAddress] = useState<Address>({
     id: 0,
@@ -119,21 +119,21 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             Friend&apos;s house
           </button>
         </div>
-        <div className="mb-4">
+        <div className="mb-15">
           <input
             name="name"
             value={address.name}
             onChange={handleChange}
             placeholder="Receiver's name"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full mb-10 px-4 py-2 border rounded-lg"
           />
         </div>
-        <div className="mb-4 relative">
+        <div className="mb-10 relative mt-5">
           <select
             name="coordinates"
             value={address.coordinates}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-lg appearance-none"
+            className="w-full px-4 py-2 border  rounded-lg appearance-none"
             style={{ display: "block", position: "absolute", bottom: 0 }}
           >
             <option value="" disabled>

@@ -14,12 +14,12 @@ const AddNewAddressButton: React.FC<AddNewAddressButtonProps> = ({
 
   const handleOpenModal = () => {
     setModalOpen(true);
-    onOpenChange(true); // Notifica o componente pai que o modal está aberto
+    onOpenChange(true);
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
-    onOpenChange(false); // Notifica o componente pai que o modal está fechado
+    onOpenChange(false);
   };
 
   const handleSaveAddress = (address: any) => {

@@ -55,7 +55,7 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
       }`}
       aria-hidden={!isOpen}
     >
-      <div className="relative w-full max-w-lg bg-white rounded-t-lg shadow-lg p-4">
+      <div className="relative w-full max-w-lg bg-white rounded-t-lg shadow-lg p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Edit Address</h3>
           <button onClick={onClose}>
@@ -65,9 +65,9 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
         <div className="mb-4">
           <p className="text-gray-500">Update the address details below.</p>
         </div>
-        <div className="mb-4 flex space-x-2">
+        <div className="mb-6 flex space-x-2">
           <button
-            className={`flex items-center px-2 py-1 border rounded-lg ${
+            className={`flex items-center px-4 py-2 border rounded-lg ${
               formData.type === "Home" ? "bg-blue-100" : ""
             }`}
             onClick={() => handleIconClick("Home")}
@@ -76,7 +76,7 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
             Home
           </button>
           <button
-            className={`flex items-center px-2 py-1 border rounded-lg ${
+            className={`flex items-center px-4 py-2 border rounded-lg ${
               formData.type === "Office" ? "bg-blue-100" : ""
             }`}
             onClick={() => handleIconClick("Office")}
@@ -85,13 +85,13 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
             Office
           </button>
           <button
-            className={`flex items-center px-2 py-1 border rounded-lg ${
-              formData.type === "Friend&apos;s house" ? "bg-blue-100" : ""
+            className={`flex items-center px-4 py-2 border rounded-lg ${
+              formData.type === "Friend's house" ? "bg-blue-100" : ""
             }`}
-            onClick={() => handleIconClick("Friend&apos;s house")}
+            onClick={() => handleIconClick("Friend's house")}
           >
             <IconFriendHouse className="w-6 h-6 mr-2" />
-            Friend&apos;s house
+            Friend's house
           </button>
         </div>
         <div className="mb-4">
@@ -104,21 +104,11 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
           />
         </div>
         <div className="mb-4">
-          <input
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Complete address"
-            className="w-full px-4 py-2 border rounded-lg"
-          />
-        </div>
-        <div className="mb-4 relative">
           <select
             name="coordinates"
             value={formData.coordinates}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg appearance-none"
-            style={{ display: "block", position: "absolute", bottom: 0 }}
           >
             <option value="" disabled>
               Select Coordinates
@@ -129,6 +119,15 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
               </option>
             ))}
           </select>
+        </div>
+        <div className="mb-4">
+          <input
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Complete address"
+            className="w-full px-4 py-2 border rounded-lg"
+          />
         </div>
         <div className="mb-4">
           <input
@@ -157,10 +156,10 @@ const EditAddressModal: React.FC<EditAddressModalProps> = ({
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-end">
           <button
             onClick={handleSave}
-            className="w-1/2 bg-blue-700 text-white py-2 rounded-lg"
+            className="w-full bg-blue-700 text-white py-2 rounded-lg"
           >
             Save changes
           </button>
