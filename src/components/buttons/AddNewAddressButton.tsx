@@ -3,15 +3,23 @@ import AddIcon from "../../assets/images/icon-add.svg";
 import AddressFormModal from "../modal/AddressFormModal";
 import api from "../../utils/api";
 
-const AddNewAddressButton: React.FC = () => {
+interface AddNewAddressButtonProps {
+  onOpenChange: (isOpen: boolean) => void;
+}
+
+const AddNewAddressButton: React.FC<AddNewAddressButtonProps> = ({
+  onOpenChange,
+}) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
     setModalOpen(true);
+    onOpenChange(true); // Notifica o componente pai que o modal está aberto
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    onOpenChange(false); // Notifica o componente pai que o modal está fechado
   };
 
   const handleSaveAddress = (address: any) => {

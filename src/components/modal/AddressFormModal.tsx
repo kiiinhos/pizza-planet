@@ -10,7 +10,7 @@ interface AddressFormModalProps {
   onClose: () => void;
   onSave: (address: Address) => void;
   initialData?: Address | null;
-  onOpenChange: (isOpen: boolean) => void;
+  onOpenChange?: (isOpen: boolean) => void; // Tornar opcional
 }
 
 const AddressFormModal: React.FC<AddressFormModalProps> = ({
@@ -18,7 +18,7 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
   onClose,
   onSave,
   initialData,
-  onOpenChange,
+  onOpenChange = () => {}, // Adicionar valor padrão
 }) => {
   const [address, setAddress] = useState<Address>({
     id: 0,

@@ -8,7 +8,6 @@ import ConfirmAddressModal from "../components/modal/ConfirmAddressModal";
 import EditAddressModal from "../components/modal/EditAddressModal";
 import ConfirmDeleteModal from "../components/modal/ConfirmDeleteModal";
 import NavigationMenu from "../components/NavigationMenu";
-import AddressFormModal from "../components/modal/AddressFormModal";
 
 const HomePage: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
@@ -69,10 +68,14 @@ const HomePage: React.FC = () => {
     setIsDeleteModalOpen(false);
   };
 
+  const handleFormModalOpenChange = (isOpen: boolean) => {
+    setIsFormModalOpen(isOpen);
+  };
+
   return (
     <div className="container mx-auto p-4">
       <Header />
-      <AddNewAddressButton />
+      <AddNewAddressButton onOpenChange={handleFormModalOpenChange} />
       {addresses.map((address) => (
         <AddressCard
           key={address.id}
@@ -106,11 +109,13 @@ const HomePage: React.FC = () => {
           onConfirm={handleConfirmDelete}
         />
       )}
-      <AddressFormModal
-        isOpen={isFormModalOpen}
-        onClose={() => setIsFormModalOpen(false)}
-        onSave={handleSaveAddress}
-        onOpenChange={(isOpen) => setIsFormModalOpen(isOpen)}
+      <NavigationMenu
+        isVisible={
+          !isModalOpen &&
+          !isEditModalOpen &&
+          !isDeleteModalOpen &&
+          !isFormModalOpen
+        }
       />
     </div>
   );
