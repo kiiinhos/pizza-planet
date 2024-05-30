@@ -112,14 +112,6 @@ const HomePage: React.FC = () => {
         onSave={handleSaveAddress}
         onOpenChange={(isOpen) => setIsFormModalOpen(isOpen)}
       />
-      <NavigationMenu
-        isVisible={
-          !isModalOpen &&
-          !isEditModalOpen &&
-          !isDeleteModalOpen &&
-          !isFormModalOpen
-        }
-      />
     </div>
   );
 };
