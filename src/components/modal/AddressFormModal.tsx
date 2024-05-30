@@ -128,6 +128,24 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
+        <div className="mb-4 relative">
+          <select
+            name="coordinates"
+            value={address.coordinates}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg appearance-none"
+            style={{ display: "block", position: "absolute", bottom: 0 }}
+          >
+            <option value="" disabled>
+              Select Coordinates
+            </option>
+            {coordinatesOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="mb-4">
           <input
             name="description"
@@ -163,24 +181,6 @@ const AddressFormModal: React.FC<AddressFormModalProps> = ({
             placeholder="Phone"
             className="w-full px-4 py-2 border rounded-lg"
           />
-        </div>
-        <div className="mb-4 relative">
-          <select
-            name="coordinates"
-            value={address.coordinates}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-lg appearance-none"
-            style={{ display: "block", position: "absolute", bottom: 0 }}
-          >
-            <option value="" disabled>
-              Select Coordinates
-            </option>
-            {coordinatesOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
         </div>
         <div className="flex justify-center">
           <button
