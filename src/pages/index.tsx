@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
 
   const handleSaveAddress = async (updatedAddress: Address) => {
     await api.patch(`/address/${updatedAddress.id}`, updatedAddress);
-    await fetchAddresses();
+    await fetchAddresses(); // Garante que o fetchAddresses seja concluído antes de fechar o modal
     setIsEditModalOpen(false);
   };
 
@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
   const handleConfirmDelete = async () => {
     if (selectedAddress) {
       await api.delete(`/address/${selectedAddress.id}`);
-      await fetchAddresses();
+      await fetchAddresses(); // Garante que o fetchAddresses seja concluído antes de fechar o modal
       setIsDeleteModalOpen(false);
     }
   };
@@ -66,8 +66,6 @@ const HomePage: React.FC = () => {
   const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
   };
-
-  const isAnyModalOpen = isModalOpen || isEditModalOpen || isDeleteModalOpen;
 
   return (
     <div className="container mx-auto p-4">
@@ -99,12 +97,16 @@ const HomePage: React.FC = () => {
           onSave={handleSaveAddress}
         />
       )}
-      <ConfirmDeleteModal
-        isOpen={isDeleteModalOpen}
-        onClose={handleCloseDeleteModal}
-        onConfirm={handleConfirmDelete}
+      {selectedAddress && (
+        <ConfirmDeleteModal
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseDeleteModal}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
+      <NavigationMenu
+        isVisible={!isModalOpen && !isEditModalOpen && !isDeleteModalOpen}
       />
-      {!isAnyModalOpen && <NavigationMenu />}
     </div>
   );
 };
